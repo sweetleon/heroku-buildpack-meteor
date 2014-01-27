@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "ARGS to: $0 $*"
 BUILD_DIR=$1
 CACHE_DIR=$2
 METEOR_HOME=$BUILD_DIR/.meteor/local
