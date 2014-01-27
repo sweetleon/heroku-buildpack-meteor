@@ -19,7 +19,7 @@ fetch_meteor() {
   curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
 
   echo "Unpacking meteor"
-  [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
+  [ -d "$METEOR_HOME" ] || mkdir -p "$METEOR_HOME"
   ar p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
 }
 
@@ -28,9 +28,13 @@ build() {
     cd $BUILD_DIR
     echo "Building meteor bundle"
     meteor bundle $CACHE_DIR/bundle.tar.gz 
+    echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
+    echo "unzipping app bundle"
     tar -zxf $CACHE_DIR/bundle.tar.gz --strip-components 1 -C $BUILD_DIR/.meteor/local/build
+    echo "removing bundle archive"
     rm $CACHE_DIR/bundle.tar.gz
+    echo "build-pack done"
   )
 }
 
