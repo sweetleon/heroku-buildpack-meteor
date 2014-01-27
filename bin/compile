@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 echo "ARGS to: $0 $*"
 BUILD_DIR=$1
