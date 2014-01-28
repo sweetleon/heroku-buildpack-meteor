@@ -20,8 +20,8 @@ fetch_meteor() {
   echo "Fetching meteor deb package"
   curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
 
-  echo "Unpacking meteor"
-  [ -d "$METEOR_HOME" ] || mkdir -p "$METEOR_HOME"
+  echo "Unpacking meteor to $METEOR_HOME"
+  [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
   ar p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
 }
 
@@ -46,5 +46,7 @@ build() {
 fetch_meteor
 build
 
-echo "FILES AVAILABLE:"
+echo "FILES AVAILABLE in app:"
 echo "`find $BUILD_DIR -type f`"
+echo "FILE AVAILABLE in meteor:"
+echo "`find $METEOR_HOME -type f`"
