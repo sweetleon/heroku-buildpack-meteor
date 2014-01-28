@@ -3,7 +3,8 @@
 BUILD_DIR=$1
 NODE_BIN=${BUILD_DIR}/.meteor/local/usr/lib/meteor/bin/node
 METEOR_JS=${BUILD_DIR}/.meteor/local/build/main.js
-ls -l ${NODE_BIN} ${METEOR_JS}
+ls -l ${NODE_BIN}
+ls -l ${METEOR_JS}
 
 cat <<-YAML
 ---
