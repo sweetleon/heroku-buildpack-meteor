@@ -21,11 +21,11 @@ fetch_meteor() {
 #  curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
 #  echo "`ls -l $CACHE_DIR/$PACKAGE`"
   echo 'Installing Meteor'
-  curl https://install.meteor.com/ | sh
+  curl https://install.meteor.com/ | sh || echo FAIL
 
-  echo "Unpacking meteor to $METEOR_HOME from $CACHE_DIR/$PACKAGE"
-  [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
-  ar -p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
+#  echo "Unpacking meteor to $METEOR_HOME from $CACHE_DIR/$PACKAGE"
+#  [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
+#  ar -p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
 }
 
 build() {
