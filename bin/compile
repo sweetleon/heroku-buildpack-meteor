@@ -33,6 +33,7 @@ build() {
     cd $BUILD_DIR
     echo "Creating scrach meteor app in `pwd`/scratch_app_$$"
     echo "`meteor create scratch_app_$$`" || echo FAIL
+echo "`find scratch_app_$$/ -type f`"
     echo "Copying .meteor into our app"
     mv scratch_app_$$/.meteor . #; rm -rf scratch_app_$$
 echo "`find . -type f`"
