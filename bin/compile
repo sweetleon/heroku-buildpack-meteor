@@ -28,6 +28,10 @@ fetch_meteor() {
 build() {
   ( 
     cd $BUILD_DIR
+    echo "Creating scrach meteor app"
+    meteor create scratch_app_$$
+    echo "Copying .meteor into our app"
+    mv scratch_app_$$/.meteor .; rm -rf scratch_app_$$
     echo "Building meteor bundle"
     meteor bundle $CACHE_DIR/bundle.tar.gz 
     echo "Making Meteor/local/build"
