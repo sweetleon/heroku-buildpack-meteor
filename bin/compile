@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 echo "ARGS to: $0 $*"
 BUILD_DIR=$1
@@ -20,9 +20,9 @@ fetch_meteor() {
   echo "Fetching meteor deb package"
   curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
 
-  echo "Unpacking meteor to $METEOR_HOME"
+  echo "Unpacking meteor to $METEOR_HOME from $CACHE_DIR/$PACKAGE"
   [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
-  ar p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
+  ar -p "$CACHE_DIR/$PACKAGE" data.tar.gz | tar -C "$METEOR_HOME" -zxf -
 }
 
 build() {
