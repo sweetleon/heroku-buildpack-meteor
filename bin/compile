@@ -32,16 +32,16 @@ build() {
   ( 
     cd $BUILD_DIR
     echo "Creating scrach meteor app"
-    meteor create scratch_app_$$
+    meteor create scratch_app_$$ || echo FAIL
     echo "Copying .meteor into our app"
     mv scratch_app_$$/.meteor .; rm -rf scratch_app_$$
 echo "`find . -type f`"
     echo "Building meteor bundle"
-    meteor bundle $CACHE_DIR/bundle.tar.gz 
+    meteor bundle $CACHE_DIR/bundle.tar.gz  || echo FAIL
     echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
     echo "unzipping app bundle"
-    tar -zxf $CACHE_DIR/bundle.tar.gz --strip-components 1 -C $BUILD_DIR/.meteor/local/build
+    tar -zxf $CACHE_DIR/bundle.tar.gz --strip-components 1 -C $BUILD_DIR/.meteor/local/build || echo FAIL
     echo "removing bundle archive"
     rm $CACHE_DIR/bundle.tar.gz
     echo "build-pack done"
