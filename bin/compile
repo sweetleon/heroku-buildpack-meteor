@@ -41,11 +41,11 @@ echo "`find ./scratch_app/ -type f`"
     mv scratch_app/.meteor . #; rm -rf scratch_app
 echo "`find . -type f`"
     echo "Building meteor bundle"
-    echo "`meteor bundle $CACHE_DIR/bundle.tar.gz`" || echo FAIL
+    echo "`meteor bundle $CACHE_DIR/bundle.tar.gz 2>&1`" || echo FAIL
+echo "`ls -l $CACHE_DIR`"
     echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
     echo "unzipping app bundle"
-echo "`ls -l $CACHE_DIR`"
     tar -zxf $CACHE_DIR/bundle.tar.gz --strip-components 1 -C $BUILD_DIR/.meteor/local/build || echo FAIL
     echo "removing bundle archive"
     rm $CACHE_DIR/bundle.tar.gz
