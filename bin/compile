@@ -35,13 +35,13 @@ build() {
   ( 
     cd $BUILD_DIR
     echo "Creating scrach meteor app in `pwd`/scratch_app"
-    echo "`meteor create scratch_app`" || echo FAIL
+    echo "`${HOME}/.meteor/tools/latest/launch-meteor create scratch_app`" || echo FAIL
 echo "`find ./scratch_app/ -type f`"
     echo "Copying .meteor into our app"
     mv scratch_app/.meteor . #; rm -rf scratch_app
 echo "`find . -type f`"
     echo "Building meteor bundle"
-    echo "`meteor bundle $CACHE_DIR/bundle.tar.gz 2>&1`" || echo FAIL
+    echo "`${HOME}/.meteor/tools/latest/launch-meteor bundle $CACHE_DIR/bundle.tar.gz 2>&1`" || echo FAIL
 echo "`ls -l $CACHE_DIR`"
     echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
