@@ -31,11 +31,11 @@ fetch_meteor() {
 build() {
   ( 
     cd $BUILD_DIR
-    echo "Creating scrach meteor app in `pwd`/scratch_app_$$"
-    echo "`meteor create scratch_app_$$`" || echo FAIL
-echo "`find scratch_app_$$/ -type f`"
+    echo "Creating scrach meteor app in `pwd`/scratch_app"
+    echo "`meteor create scratch_app`" || echo FAIL
+echo "`find ./scratch_app/ -type f`"
     echo "Copying .meteor into our app"
-    mv scratch_app_$$/.meteor . #; rm -rf scratch_app_$$
+    mv scratch_app/.meteor . #; rm -rf scratch_app
 echo "`find . -type f`"
     echo "Building meteor bundle"
     echo "`meteor bundle $CACHE_DIR/bundle.tar.gz`" || echo FAIL
