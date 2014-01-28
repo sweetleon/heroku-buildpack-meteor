@@ -19,6 +19,7 @@ fetch_meteor() {
 
   echo "Fetching meteor deb package"
   curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
+  echo "`ls -l $CACHE_DIR/$PACKAGE`"
 
   echo "Unpacking meteor to $METEOR_HOME from $CACHE_DIR/$PACKAGE"
   [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
