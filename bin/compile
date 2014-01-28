@@ -21,7 +21,7 @@ fetch_meteor() {
 #  curl -o "$CACHE_DIR/$PACKAGE" "http://d3sqy0vbqsdhku.cloudfront.net/${PACKAGE}"
 #  echo "`ls -l $CACHE_DIR/$PACKAGE`"
   echo 'Installing Meteor'
-  curl https://install.meteor.com/ | sh || echo FAIL
+  echo "`curl https://install.meteor.com/ | sh`" || echo FAIL
 
 #  echo "Unpacking meteor to $METEOR_HOME from $CACHE_DIR/$PACKAGE"
 #  [ ! -d "$METEOR_HOME" ] && mkdir -p "$METEOR_HOME"
@@ -32,12 +32,12 @@ build() {
   ( 
     cd $BUILD_DIR
     echo "Creating scrach meteor app"
-    meteor create scratch_app_$$ || echo FAIL
+    echo "`meteor create scratch_app_$$`" || echo FAIL
     echo "Copying .meteor into our app"
     mv scratch_app_$$/.meteor .; rm -rf scratch_app_$$
 echo "`find . -type f`"
     echo "Building meteor bundle"
-    meteor bundle $CACHE_DIR/bundle.tar.gz  || echo FAIL
+    echo "`meteor bundle $CACHE_DIR/bundle.tar.gz`" || echo FAIL
     echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
     echo "unzipping app bundle"
