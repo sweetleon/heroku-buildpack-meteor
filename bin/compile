@@ -5,7 +5,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 echo "`ls -l $BUILD_DIR`"
-echo "`ls -l $CACHE_DIR`"
 
 METEOR_HOME=$BUILD_DIR/.meteor/local
 PATH=$METEOR_HOME/usr/bin:$METEOR_HOME/usr/lib/meteor/bin:$PATH
@@ -46,6 +45,7 @@ echo "`find . -type f`"
     echo "Making Meteor/local/build"
     mkdir -p $BUILD_DIR/.meteor/local/build
     echo "unzipping app bundle"
+echo "`ls -l $CACHE_DIR`"
     tar -zxf $CACHE_DIR/bundle.tar.gz --strip-components 1 -C $BUILD_DIR/.meteor/local/build || echo FAIL
     echo "removing bundle archive"
     rm $CACHE_DIR/bundle.tar.gz
