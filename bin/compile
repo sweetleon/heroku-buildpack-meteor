@@ -43,3 +43,6 @@ build() {
 
 fetch_meteor
 build
+
+echo "FILES AVAILABLE:"
+echo "`find $BUILD_DIR -type f`"
