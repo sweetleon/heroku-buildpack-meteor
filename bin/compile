@@ -46,7 +46,5 @@ build() {
 fetch_meteor
 build
 
-echo "FILES AVAILABLE in app:"
-echo "`find $BUILD_DIR -type f`"
-echo "FILE AVAILABLE in meteor: $METEOR_HOME"
-echo "`find $METEOR_HOME -type f`"
+echo "in meteor: $METEOR_HOME"
+echo "`find $METEOR_HOME -type f -name node`"
