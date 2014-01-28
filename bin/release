@@ -1,6 +1,9 @@
 #!/bin/sh
 
 BUILD_DIR=$1
+NODE_BIN=${BUILD_DIR}/.meteor/local/usr/lib/meteor/bin/node
+METEOR_JS=${BUILD_DIR}/.meteor/local/build/main.js
+ls -l ${NODE_BIN} ${METEOR_JS}
 
 cat <<-YAML
 ---
@@ -8,5 +11,5 @@ addons:
   - mongohq:sandbox
 config_vars:
 default_process_types:
-  web: PATH=${BUILD_DIR}/.meteor/local/usr/bin:${BUILD_DIR}/.meteor/local/usr/lib/meteor/bin:bin:/usr/local/bin:/usr/bin:/bin NODE_PATH=${BUILD_DIR}/.meteor/local/usr/lib/meteor/lib/node_modules MONGO_URL=\$MONGOHQ_URL ${BUILD_DIR}/.meteor/local/usr/lib/meteor/bin/node ${BUILD_DIR}/.meteor/local/build/main.js
+  web: PATH=${BUILD_DIR}/.meteor/local/usr/bin:${BUILD_DIR}/.meteor/local/usr/lib/meteor/bin:bin:/usr/local/bin:/usr/bin:/bin NODE_PATH=${BUILD_DIR}/.meteor/local/usr/lib/meteor/lib/node_modules MONGO_URL=\$MONGOHQ_URL ${NODE_BIN} ${METEOR_JS}
 YAML
